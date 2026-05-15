@@ -304,6 +304,41 @@ pipeline {
 }
 ```
 
+if this doesnt work, then use this 
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        dockerImage = "ayusht05/test_3"
+        registry = "ayusht05/test_3"
+        registryCredential = 'jenkin_docker-token'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[url: 'https://github.com/AyushT05/DockerProg.git']]
+                )
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("${dockerImage}")
+                }
+            }
+        }
+
+    }
+}
+```
 ---
 
 ### Step 8: Execute Pipeline
