@@ -1,5 +1,3 @@
-# DevOps Lab Record – LT-2
-
 ## Experiment 5: Create a Docker Image for an Application and Run the Application Using Docker Image
 
 **Date:** 06-04-2026
